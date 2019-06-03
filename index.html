@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Gem Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="jumbotron" class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4">
+            <h1>Gem Game!</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <h2>How to Play</h2>
+            <p>
+              Your goal is to collect $150 worth of gems. Click the gems to
+              collect them! Each gem is worth a different amount. Don't get too
+              greedy though, too many gems will lead to a Game Over!
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4">
+            <div id="gemcounter">
+              <h3>Gems Collected</h3>
+              <br />
+              <p id="gemsCollected">0</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 gem1">
+            <button id="gem1"></button>
+          </div>
+          <div class="col-sm-3 gem2">
+            <button id="gem2"></button>
+          </div>
+          <div class="col-sm-3 gem3">
+            <button id="gem3"></button>
+          </div>
+          <div class="col-sm-3 gem4">
+            <button id="gem4"></button>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+
+    <script>
+      var gem1;
+      var gem2;
+      var gem3;
+      var gem4;
+      var wins = 0;
+      var losses = 0;
+      var gemCounter = 0;
+
+      function startgame() {
+        gemCounter = 0;
+        $("#gemsCollected").text("$ " + 0);
+        gem1 = Math.floor(Math.random() * 10);
+        gem2 = Math.floor(Math.random() * 15);
+        gem3 = Math.floor(Math.random() * 20);
+        gem4 = Math.floor(Math.random() * 40);
+        playGame();
+        console.log(gem1);
+        console.log(gem2);
+        console.log(gem3);
+        console.log(gem4);
+      }
+
+      function playGame() {
+        $("#gem1").on("click", function() {
+          gemCounter = gemCounter + gem1;
+          $("#gemsCollected").text("$ " + gemCounter);
+          winCondition();
+        });
+        $("#gem2").on("click", function() {
+          gemCounter = gemCounter + gem2;
+          $("#gemsCollected").text("$ " + gemCounter);
+          winCondition();
+        });
+        $("#gem3").on("click", function() {
+          gemCounter = gemCounter + gem3;
+          $("#gemsCollected").text("$ " + gemCounter);
+          winCondition();
+        });
+        $("#gem4").on("click", function() {
+          gemCounter = gemCounter + gem4;
+          $("#gemsCollected").text("$ " + gemCounter);
+          winCondition();
+        });
+        $("#Reset").on("click", function() {
+          startGame();
+        });
+      }
+
+      function winCondition() {
+        if (gemCounter > 150) {
+          alert("Game Over! Play again!");
+          losses++;
+          startgame();
+        }
+
+        if (gemCounter === 150) {
+          alert("You won! Play Again!");
+          wins++;
+          startgame();
+        }
+      }
+
+      //win conditions
+      startgame();
+      winCondition();
+    </script>
+  </body>
+</html>
