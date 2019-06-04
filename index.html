@@ -26,12 +26,14 @@
         <div class="row">
           <div class="col-sm-2"></div>
           <div class="col-sm-8">
-            <h2>How to Play</h2>
+            <h2>Story / How to Play</h2>
             <p>
-              Your goal is to collect $150 worth of gems. Click the gems to
-              collect them! Each gem is worth a different amount. Don't get too
-              greedy though, the mines are treacherous and collecting more than
-              the required amount will bring dire consequences.
+              There are legends of a cave filled with precious, priceless gems
+              hidden deep within the rain forest. You are one of the lucky few
+              explorers to have navigated your way to its entrance. Your goal is
+              to mine and collect 210 units of gems. Click the gems to
+              mine/collect them! Each gem is worth a different amount of units
+              and their worth changes with every trip.
             </p>
             <button type="button" class="btn btn-danger playMusic">
               Play Background Music
@@ -84,47 +86,64 @@
     </div>
 
     <script>
-      var gem1;
-      var gem2;
-      var gem3;
-      var gem4;
+      var gem1 = 0;
+      var gem2 = 0;
+      var gem3 = 0;
+      var gem4 = 0;
       var wins = 0;
       var losses = 0;
       var gemCounter = 0;
 
+      //audio fun
+      var audioElement = document.createElement("audio");
+      audioElement.setAttribute("src", "assets/cave.mp3");
+      $(".playMusic").on("click", function() {
+        audioElement.play();
+      });
+      $(".pauseMusic").on("click", function() {
+        audioElement.pause();
+      });
+
+      var deathSound = document.createElement("audio");
+      deathSound.setAttribute("src", "assets/death.mp3");
+
+      var museum = document.createElement("audio");
+      museum.setAttribute("src", "assets/museum.mp3");
+
+      //actual functions
+
       function startgame() {
         gemCounter = 0;
-        $("#gemsCollected").text("$ " + 0);
-        gem1 = Math.ceil(Math.random() * 10);
-        gem2 = Math.ceil(Math.random() * 15);
-        gem3 = Math.ceil(Math.random() * 20);
-        gem4 = Math.ceil(Math.random() * 40);
-        playGame();
+
+        $("#gemsCollected").text(0 + " " + "units");
+        gem1 = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
+        gem2 = Math.floor(Math.random() * (15 - 5 + 1)) + 5;
+        gem3 = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
+        gem4 = Math.floor(Math.random() * (60 - 30 + 1)) + 30;
+
         console.log(gem1);
-        console.log(gem2);
-        console.log(gem3);
-        console.log(gem4);
       }
 
       function playGame() {
         $("#gem1").on("click", function() {
           gemCounter = gemCounter + gem1;
-          $("#gemsCollected").text("$ " + gemCounter);
+          console.log(gem1);
+          $("#gemsCollected").text(gemCounter + " " + "units");
           winCondition();
         });
         $("#gem2").on("click", function() {
           gemCounter = gemCounter + gem2;
-          $("#gemsCollected").text("$ " + gemCounter);
+          $("#gemsCollected").text(gemCounter + " " + "units");
           winCondition();
         });
         $("#gem3").on("click", function() {
           gemCounter = gemCounter + gem3;
-          $("#gemsCollected").text("$ " + gemCounter);
+          $("#gemsCollected").text(gemCounter + " " + "units");
           winCondition();
         });
         $("#gem4").on("click", function() {
           gemCounter = gemCounter + gem4;
-          $("#gemsCollected").text("$ " + gemCounter);
+          $("#gemsCollected").text(gemCounter + " " + "units");
           winCondition();
         });
         $("#Reset").on("click", function() {
@@ -133,7 +152,7 @@
       }
 
       function winCondition() {
-        if (gemCounter > 150) {
+        if (gemCounter > 210) {
           alert(
             "As you strike the walls with your pickaxe, the earth around you begins to shake violently. Rocks begin to fall from the ceiling."
           );
@@ -143,30 +162,39 @@
           alert(
             "You scream for help, only to hear your cries echo off the walls. Cut off from the rest of the world, you would continue to remain here for the rest of your days. Your greed has cost you everything."
           );
+          deathSound.play();
           alert("Game over, man.");
+          deathSound.play();
           losses++;
-          gemCounter = 0;
           $("#losses").text(losses);
           startgame();
         }
 
-        if (gemCounter === 150) {
-          alert("You won! Play Again!");
+        if (gemCounter === 210) {
+          alert(
+            "You've successfully escaped the cave with no troubles at all."
+          );
+          alert(
+            "The legends were true, these gems truly are precious and priceless. Quite literally as they were virtually worthless. The only place that would accept them was the local museum as a donation. "
+          );
+          alert(
+            "Your adventure into the cave was not fruitless however. The story of your discovery made its way across the globe."
+          );
+          alert(
+            "Publishers want to write biographies about you. Hollywood producers are even looking into making a movie based on your story."
+          );
+
+          alert("Working Title 'Indiana Jones'");
+          museum.play();
+
           wins++;
           $("#wins").text(wins);
           startgame();
         }
       }
-      var audioElement = document.createElement("audio");
-      audioElement.setAttribute("src", "assets/cave.mp3");
-      $(".playMusic").on("click", function() {
-        audioElement.play();
-      });
-      $(".pauseMusic").on("click", function() {
-        audioElement.pause();
-      });
-      //win conditions
+
       startgame();
+      playGame();
       winCondition();
     </script>
   </body>
