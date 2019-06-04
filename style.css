@@ -1,0 +1,56 @@
+.jumbotron {
+  width: 50%;
+  background: rgba(76, 175, 80, 0.8);
+}
+
+#head {
+  background-color: brown;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 4.2rem;
+}
+
+.win {
+  background: rgba(76, 175, 80, 0.8);
+  text-decoration: underline;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+
+.loss {
+  background: rgba(76, 175, 80, 0.8);
+  text-decoration: underline;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+
+#gemcounter {
+  background: rgba(76, 175, 80, 0.8);
+  position: relative;
+  top: 20px;
+}
+
+#gemcounter h3 {
+  text-decoration: underline;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+#gemsCollected {
+  text-align: center;
+}
+
+.gemsHolder {
+  position: relative;
+  top: 50px;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+p {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
